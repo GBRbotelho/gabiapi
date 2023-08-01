@@ -1,12 +1,15 @@
 const express = require("express");
 const app = express();
 
-// Importar a configuração do MongoDB
-const connectToMongoDB = require("./src/infrastructure/database/mongoConfig");
+//Controle de Rotas
+const routes = require("./src/interfaces/routes/routes");
+app.use(routes);
 
-// Conectar ao MongoDB
+// Config Mongo
+const connectToMongoDB = require("./src/infrastructure/database/mongoConfig");
 connectToMongoDB();
 
+//Server
 app.use(express.json());
 
 app.listen(3000, () => {
