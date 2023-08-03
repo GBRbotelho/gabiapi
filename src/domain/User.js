@@ -1,7 +1,8 @@
 // src/domain/user.js
 class User {
-  constructor(username, password, email, accountLevel) {
-    this.username = username;
+  constructor(firstName, lastName, password, email, accountLevel = 0) {
+    this.firstName = firstName;
+    this.lastName = lastName;
     this.password = password;
     this.email = email;
     this.accountLevel = accountLevel;
