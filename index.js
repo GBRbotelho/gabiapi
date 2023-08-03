@@ -1,6 +1,12 @@
 const express = require("express");
 const app = express();
 
+//BodyParser
+const bodyParser = require("body-parser");
+// ...
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 //Controle de Rotas
 const routes = require("./src/interfaces/routes/routes");
 app.use(routes);

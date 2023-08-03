@@ -10,9 +10,9 @@ const userController = {
     try {
       const CreatedUser = await CreateUser(req.body, UserRepository);
 
-      return res.status(201).json(CreateUser);
+      return res.status(201).json(CreatedUser);
     } catch (error) {
-      return res.status(500).json({ error: "Failed to create client" });
+      return res.status(500).json({ error: error.message });
     }
   },
 
