@@ -39,7 +39,15 @@ const userController = {
     }
   },
 
-  async updateUser(req, res) {},
+  async updateUser(req, res) {
+    try {
+      const { id } = req.params;
+      const UpdatedUser = await UpdateUser(id, req.body, userRepository);
+      return res.status(200).json(UpdatedUser);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  },
 
   async deleteUser(req, res) {
     try {
