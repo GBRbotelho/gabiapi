@@ -13,4 +13,10 @@ module.exports = {
   async getAll() {
     return await User.find();
   },
+  async getById(userId) {
+    return await User.findById(userId);
+  },
+  async delete(clientId) {
+    return await User.findByIdAndDelete(clientId);
+  },
 };

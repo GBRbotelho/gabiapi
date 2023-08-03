@@ -18,6 +18,6 @@ module.exports = async (userData, userRepository) => {
 
     return userRepository.create(user);
   } catch (error) {
-    throw { message: error.message };
+    throw { message: error.message || "Failed to Create User" };
   }
 };
