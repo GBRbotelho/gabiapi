@@ -60,7 +60,14 @@ const userController = {
     }
   },
 
-  async login(req, res) {},
+  async login(req, res) {
+    try {
+      const token = await LoginUser(req.body, UserRepository);
+      return res.status(200).json({ token });
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  },
 };
 
 module.exports = userController;

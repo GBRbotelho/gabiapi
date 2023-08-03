@@ -5,8 +5,8 @@ module.exports = async (userData, userRepository) => {
     const user = new User(
       userData.firstName,
       userData.lastName,
-      userData.email,
       userData.password,
+      userData.email,
       userData.accountLevel
     );
 
