@@ -5,6 +5,7 @@ const GetUserById = require("../../application/useCases/user/GetUserById");
 const UpdateUser = require("../../application/useCases/user/UpdateUser");
 const LoginUser = require("../../application/useCases/user/LoginUser");
 const UserRepository = require("../../infrastructure/repositories/userRepository");
+const userRepository = require("../../infrastructure/repositories/userRepository");
 
 const userController = {
   async create(req, res) {
@@ -17,9 +18,26 @@ const userController = {
     }
   },
 
-  async getAllUsers(req, res) {},
+  async getAllUsers(req, res) {
+    try {
+      const users = await GetAllUsers(UserRepository);
 
-  async getUserById(req, res) {},
+      return res.status(200).json(users);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  },
+
+  async getUserById(req, res) {
+    try {
+      const { id } = req.params;
+      const user = await GetUserById(id, userRepository);
+
+      return res.status(201).json(user);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  },
 
   async updateUser(req, res) {},
 
