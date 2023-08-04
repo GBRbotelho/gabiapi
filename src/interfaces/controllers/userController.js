@@ -4,13 +4,12 @@ const DeleteUser = require("../../application/useCases/user/DeleteUser");
 const GetUserById = require("../../application/useCases/user/GetUserById");
 const UpdateUser = require("../../application/useCases/user/UpdateUser");
 const LoginUser = require("../../application/useCases/user/LoginUser");
-const UserRepository = require("../../infrastructure/repositories/userRepository");
 const userRepository = require("../../infrastructure/repositories/userRepository");
 
 const userController = {
   async create(req, res) {
     try {
-      const CreatedUser = await CreateUser(req.body, UserRepository);
+      const CreatedUser = await CreateUser(req.body, userRepository);
 
       return res.status(201).json(CreatedUser);
     } catch (error) {
@@ -20,7 +19,7 @@ const userController = {
 
   async getAllUsers(req, res) {
     try {
-      const users = await GetAllUsers(UserRepository);
+      const users = await GetAllUsers(userRepository);
 
       return res.status(200).json(users);
     } catch (error) {
@@ -52,7 +51,7 @@ const userController = {
   async deleteUser(req, res) {
     try {
       const { id } = req.params;
-      const DeletedUser = await DeleteUser(id, UserRepository);
+      const DeletedUser = await DeleteUser(id, userRepository);
 
       return res.status(201).json(DeletedUser);
     } catch (error) {
@@ -62,7 +61,7 @@ const userController = {
 
   async login(req, res) {
     try {
-      const token = await LoginUser(req.body, UserRepository);
+      const token = await LoginUser(req.body, userRepository);
       return res.status(200).json({ token });
     } catch (error) {
       return res.status(500).json({ error: error.message });
