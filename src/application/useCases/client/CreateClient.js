@@ -1,4 +1,4 @@
-const Client = require("../../../domain/User");
+const Client = require("../../../domain/Client");
 
 module.exports = async (clientData, clientRepository) => {
   try {
