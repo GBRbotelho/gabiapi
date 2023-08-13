@@ -29,7 +29,7 @@ const clientController = {
   async getClientById(req, res) {
     try {
       const { id } = req.params;
-      const client = await GetClientById(id, userRepository);
+      const client = await GetClientById(id, clientRepository);
 
       return res.status(201).json(client);
     } catch (error) {
