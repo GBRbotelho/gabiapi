@@ -1,4 +1,3 @@
-// src/domain/user.js
 class User {
   constructor(firstName, lastName, password, email, accountLevel = 0) {
     this.firstName = firstName;
