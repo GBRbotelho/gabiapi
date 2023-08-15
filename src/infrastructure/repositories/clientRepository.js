@@ -7,6 +7,9 @@ module.exports = {
   async findByCpf(cpf) {
     return await Client.findOne({ cpf });
   },
+  async findById(clientId) {
+    return await Client.findById(clientId);
+  },
   async update(clientId, clientData) {
     return await Client.findByIdAndUpdate(clientId, clientData, { new: true });
   },

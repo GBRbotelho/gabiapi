@@ -7,5 +7,6 @@ router.get("/", clientController.getAllClients);
 router.get("/:id", clientController.getClientById);
 router.put("/:id", clientController.updateClient);
 router.delete("/:id", clientController.deleteClient);
+router.put("/:clientId/add-history", clientController.addHistory);
 
 module.exports = router;

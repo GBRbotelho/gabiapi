@@ -1,5 +1,11 @@
 const mongoose = require("mongoose");
 
+const historySchema = new mongoose.Schema({
+  service: String,
+  price: Number,
+  date: Date,
+});
+
 const clientSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -21,6 +27,10 @@ const clientSchema = new mongoose.Schema({
   date: {
     type: Date,
     required: true,
+  },
+  history: {
+    type: [historySchema],
+    default: [],
   },
 });
 

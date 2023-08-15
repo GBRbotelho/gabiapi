@@ -3,6 +3,7 @@ const CreateClient = require("../../application/useCases/client/CreateClient");
 const DeleteClient = require("../../application/useCases/client/DeleteClient");
 const GetClientById = require("../../application/useCases/client/GetClientById");
 const UpdateClient = require("../../application/useCases/client/UpdateClient");
+const AddHistory = require("../../application/useCases/client/AddHistory");
 const clientRepository = require("../../infrastructure/repositories/clientRepository");
 
 const clientController = {
@@ -53,6 +54,23 @@ const clientController = {
       const DeletedClient = await DeleteClient(id, clientRepository);
 
       return res.status(201).json(DeletedClient);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  },
+
+  async addHistory(req, res) {
+    try {
+      const { clientId } = req.params;
+      const { service, price, date } = req.body;
+
+      const history = await AddHistory(
+        clientId,
+        { service, price, date },
+        clientRepository
+      );
+
+      return res.status(200).json(history);
     } catch (error) {
       return res.status(500).json({ error: error.message });
     }
