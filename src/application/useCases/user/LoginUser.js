@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const jwtService = require("../../security/authentication/jwtService");
 
 module.exports = async (userData, userRepository) => {
   try {
@@ -16,13 +17,11 @@ module.exports = async (userData, userRepository) => {
       throw { message: "Invalid password" };
     }
 
-    // Gerar token de autenticação
-    // const token = jwt.sign({ userId: user._id }, secretKey, {
-    //   expiresIn: "1h",
-    // });
-    const token = "1";
+    const token = jwtService.createToken({
+      userId: user._id,
+      email: user.email,
+    });
 
-    // Retornar token
     return token;
   } catch (error) {
     throw { message: error.message };
