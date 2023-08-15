@@ -1,3 +1,4 @@
+const bcrypt = require("bcrypt");
 const User = require("../../../domain/User");
 
 module.exports = async (userData, userRepository) => {
@@ -10,11 +11,13 @@ module.exports = async (userData, userRepository) => {
       userData.accountLevel
     );
 
-    //Verifica se ja existe esse email no Banco de Dados
     const emailValidate = await userRepository.findByEmail(user.email);
     if (emailValidate) {
       throw { message: "Email already exists" };
     }
+
+    const password = await bcrypt.hash(user.password, 10);
+    user.password = password;
 
     return userRepository.create(user);
   } catch (error) {

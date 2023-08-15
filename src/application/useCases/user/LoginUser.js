@@ -1,19 +1,18 @@
+const bcrypt = require("bcrypt");
+
 module.exports = async (userData, userRepository) => {
   try {
-    // Procurar usuário por email ou username
     const user = await userRepository.findByEmail(userData.email);
 
-    // Verificar se o usuário existe
     if (!user) {
       throw { message: "Email not found" };
     }
 
-    // Verificar a senha
-    // const isPasswordValid = await bcrypt.compare(password, user.password);
-    // if (!isPasswordValid) {
-    //   throw new Error("Invalid password");
-    // }
-    if (userData.password !== user.password) {
+    const isPasswordValid = await bcrypt.compare(
+      userData.password,
+      user.password
+    );
+    if (!isPasswordValid) {
       throw { message: "Invalid password" };
     }
 
