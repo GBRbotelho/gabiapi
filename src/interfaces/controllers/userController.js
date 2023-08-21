@@ -4,12 +4,15 @@ const DeleteUser = require("../../application/useCases/user/DeleteUser");
 const GetUserById = require("../../application/useCases/user/GetUserById");
 const UpdateUser = require("../../application/useCases/user/UpdateUser");
 const LoginUser = require("../../application/useCases/user/LoginUser");
+const ConfirmationEmail = require("../../application/useCases/user/ConfirmationEmail");
 const userRepository = require("../../infrastructure/repositories/userRepository");
 
 const userController = {
   async create(req, res) {
     try {
       const CreatedUser = await CreateUser(req.body, userRepository);
+
+      await ConfirmationEmail(CreatedUser._id);
 
       return res.status(201).json(CreatedUser);
     } catch (error) {
