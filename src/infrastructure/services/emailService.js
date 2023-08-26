@@ -1,18 +1,23 @@
 const nodemailer = require("nodemailer");
+const config = require("../../../config");
 
-const transporter = nodemailer.createTransport({
-  service: "Gmail",
+let transporter = nodemailer.createTransport({
+  service: "gmail",
   auth: {
-    user: "gabrielbbotelho05@gmail.com",
-    pass: "G4br13l123",
+    type: "OAuth2",
+    user: config.user,
+    clientId: config.clientId,
+    clientSecret: config.clientSecret,
+    refreshToken: config.refreshToken,
+    acessToken: config.acessToken,
   },
 });
 
 module.exports = {
   async sendConfirmationCodeEmail(confirmationCode, recipientEmail) {
-    const mailOptions = {
-      from: "gabrielbbotelho05@gmail.com",
-      to: recipientEmail,
+    let mailOptions = {
+      from: `System <${config.user}>`, // Use o endereço de e-mail configurado nas variáveis de ambiente
+      to: recipientEmail, // Use o e-mail do destinatário que você passou como argumento para a função
       subject: "Confirmação de E-mail",
       text: `Seu código de confirmação é: ${confirmationCode}`,
     };

@@ -1,14 +1,16 @@
 const generateRandomCode = require("../../utils/generateRandomCode");
 const EmailService = require("../../../infrastructure/services/emailService");
-const UserRepository = require("../../../infrastructure/repositories/userRepository");
 
-module.exports = async (userId) => {
+module.exports = async (userId, userEmail, repository) => {
   try {
-    const confirmationCode = generateRandomCode(6); // Gera um código de 6 dígitos
-    await UserRepository.update(userId, { confirmationCode });
+    const emailConfirmationCode = generateRandomCode(6); // Gera um código de 6 dígitos
+    await repository.update(userId, { emailConfirmationCode });
 
     // Aqui você chamaria a função de envio de email para enviar o código
-    await EmailService.sendConfirmationCodeEmail(confirmationCode, userId);
+    await EmailService.sendConfirmationCodeEmail(
+      emailConfirmationCode,
+      userEmail
+    );
 
     return { message: "Confirmation code sent" };
   } catch (error) {
