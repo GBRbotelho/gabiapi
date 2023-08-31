@@ -5,6 +5,7 @@ const GetUserById = require("../../application/useCases/user/GetUserById");
 const UpdateUser = require("../../application/useCases/user/UpdateUser");
 const LoginUser = require("../../application/useCases/user/LoginUser");
 const ConfirmationEmail = require("../../application/useCases/user/ConfirmationEmail");
+const ConfirmationCode = require("../../application/useCases/user/ConfirmationCode");
 const userRepository = require("../../infrastructure/repositories/userRepository");
 
 const userController = {
@@ -81,6 +82,24 @@ const userController = {
       const confirmation = await ConfirmationEmail(id, userRepository);
 
       return res.status(201).json(confirmation);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  },
+  async compareConfirmationCode(req, res) {
+    try {
+      const { id } = req.params;
+      const { code } = req.body;
+
+      const result = await ConfirmationCode(id, code, userRepository);
+
+      if (result.success) {
+        return res
+          .status(200)
+          .json({ message: "Email confirmed successfully" });
+      } else {
+        return res.status(400).json({ message: "Invalid confirmation code" });
+      }
     } catch (error) {
       return res.status(500).json({ error: error.message });
     }

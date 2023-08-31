@@ -10,9 +10,10 @@ router.get("/:id", authenticationMiddleware, UserController.getUserById);
 router.put("/:id", authenticationMiddleware, UserController.updateUser);
 router.delete("/:id", authenticationMiddleware, UserController.deleteUser);
 router.put(
-  "/resend-confirmation/:id",
+  "/resend/:id",
   authenticationMiddleware,
   UserController.resendConfirmationEmail
 );
+router.post("/confirm/:id", UserController.compareConfirmationCode);
 
 module.exports = router;
