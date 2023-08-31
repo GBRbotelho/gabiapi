@@ -6,6 +6,8 @@ const UpdateUser = require("../../application/useCases/user/UpdateUser");
 const LoginUser = require("../../application/useCases/user/LoginUser");
 const ConfirmationEmail = require("../../application/useCases/user/ConfirmationEmail");
 const ConfirmationCode = require("../../application/useCases/user/ConfirmationCode");
+const SendPasswordResetEmail = require("../../application/useCases/user/SendPasswordResetEmail");
+const ResetPassword = require("../../application/useCases/user/ResetPassword");
 const userRepository = require("../../infrastructure/repositories/userRepository");
 
 const userController = {
@@ -100,6 +102,29 @@ const userController = {
       } else {
         return res.status(400).json({ message: "Invalid confirmation code" });
       }
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  },
+  async requestPasswordReset(req, res) {
+    try {
+      const { email } = req.body;
+
+      const result = await SendPasswordResetEmail(email, userRepository);
+
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  },
+  async resetPassword(req, res) {
+    try {
+      const { token } = req.params;
+      const { newPassword } = req.body;
+
+      const result = await ResetPassword(token, newPassword, userRepository);
+
+      return res.status(200).json(result);
     } catch (error) {
       return res.status(500).json({ error: error.message });
     }

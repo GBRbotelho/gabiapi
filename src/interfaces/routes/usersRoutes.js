@@ -15,5 +15,7 @@ router.put(
   UserController.resendConfirmationEmail
 );
 router.post("/confirm/:id", UserController.compareConfirmationCode);
+router.post("/request-password-reset", UserController.requestPasswordReset);
+router.post("/reset-password/:token", UserController.resetPassword);
 
 module.exports = router;

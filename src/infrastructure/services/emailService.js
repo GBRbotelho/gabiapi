@@ -29,4 +29,21 @@ module.exports = {
       console.error("Erro ao enviar e-mail:", error);
     }
   },
+  async sendPasswordResetEmail(userEmail, resetToken) {
+    let mailOptions = {
+      from: `System <${config.user}>`,
+      to: userEmail,
+      subject: "Redefinição de Senha",
+      text:
+        `Você solicitou a redefinição de senha. Clique no link abaixo para redefinir sua senha:\n\n` +
+        `${config.frontendBaseUrl}/reset-password/${resetToken}`,
+    };
+
+    try {
+      const info = await transporter.sendMail(mailOptions);
+      console.log("E-mail de redefinição de senha enviado:", info.response);
+    } catch (error) {
+      console.error("Erro ao enviar e-mail de redefinição de senha:", error);
+    }
+  },
 };
