@@ -74,6 +74,18 @@ const userController = {
       return res.status(500).json({ error: error.message });
     }
   },
+  async resendConfirmationEmail(req, res) {
+    try {
+      const { id } = req.params;
+      const { email } = req.body;
+
+      const confirmation = await ConfirmationEmail(id, email, userRepository);
+
+      return res.status(201).json(confirmation);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  },
 };
 
 module.exports = userController;
