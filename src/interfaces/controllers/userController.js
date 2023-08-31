@@ -77,9 +77,8 @@ const userController = {
   async resendConfirmationEmail(req, res) {
     try {
       const { id } = req.params;
-      const { email } = req.body;
 
-      const confirmation = await ConfirmationEmail(id, email, userRepository);
+      const confirmation = await ConfirmationEmail(id, userRepository);
 
       return res.status(201).json(confirmation);
     } catch (error) {
