@@ -6,7 +6,7 @@ module.exports = async (userData, userRepository) => {
     const user = await userRepository.findByEmail(userData.email);
 
     if (!user) {
-      throw { message: "Email not found" };
+      throw { message: "Email não encontrado" };
     }
 
     const isPasswordValid = await bcrypt.compare(
@@ -14,7 +14,7 @@ module.exports = async (userData, userRepository) => {
       user.password
     );
     if (!isPasswordValid) {
-      throw { message: "Invalid password" };
+      throw { message: "Senha invalida" };
     }
 
     const token = jwtService.createToken({

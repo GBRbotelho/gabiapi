@@ -1,6 +1,10 @@
 const express = require("express");
 const app = express();
 
+//Cors
+const cors = require("cors");
+app.use(cors());
+
 //BodyParser
 const bodyParser = require("body-parser");
 // ...
