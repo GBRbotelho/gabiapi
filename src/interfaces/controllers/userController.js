@@ -15,11 +15,7 @@ const userController = {
     try {
       const CreatedUser = await CreateUser(req.body, userRepository);
 
-      await ConfirmationEmail(
-        CreatedUser._id,
-        CreatedUser.email,
-        userRepository
-      );
+      await ConfirmationEmail(CreatedUser._id, userRepository);
 
       return res.status(201).json(CreatedUser);
     } catch (error) {
