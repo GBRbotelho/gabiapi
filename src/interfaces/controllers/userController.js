@@ -82,7 +82,7 @@ const userController = {
         return res.status(400).json({ error: "Token não fornecido" });
       }
 
-      const newToken = await refreshTokenUseCase(token);
+      const newToken = await RefreshToken(token);
 
       if (!newToken) {
         return res.status(401).json({ error: "Token inválido ou expirado" });
