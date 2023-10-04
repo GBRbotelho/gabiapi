@@ -4,6 +4,7 @@ const UserController = require("../controllers/userController");
 const authenticationMiddleware = require("../../infrastructure/middlewares/authMiddleware");
 
 router.post("/login", UserController.login);
+router.post("/refresh-token", UserController.refreshToken);
 router.post("/", UserController.create);
 router.get("/", authenticationMiddleware, UserController.getAllUsers);
 router.get("/:id", authenticationMiddleware, UserController.getUserById);

@@ -8,6 +8,7 @@ const ConfirmationEmail = require("../../application/useCases/user/ConfirmationE
 const ConfirmationCode = require("../../application/useCases/user/ConfirmationCode");
 const SendPasswordResetEmail = require("../../application/useCases/user/SendPasswordResetEmail");
 const ResetPassword = require("../../application/useCases/user/ResetPassword");
+const RefreshToken = require("../../application/useCases/user/RefreshToken");
 const userRepository = require("../../infrastructure/repositories/userRepository");
 
 const userController = {
@@ -73,6 +74,27 @@ const userController = {
       return res.status(500).json({ error: error.message });
     }
   },
+  async refreshToken(req, res) {
+    try {
+      const { token } = req.body; // Supondo que o token esteja no corpo da requisição
+
+      if (!token) {
+        return res.status(400).json({ error: "Token não fornecido" });
+      }
+
+      const newToken = await refreshTokenUseCase(token);
+
+      if (!newToken) {
+        return res.status(401).json({ error: "Token inválido ou expirado" });
+      }
+
+      // Se o novo token foi gerado com sucesso, você pode enviá-lo de volta como resposta
+      return res.status(200).json({ token: newToken });
+    } catch (error) {
+      return res.status(500).json({ error: "Erro ao renovar o token" });
+    }
+  },
+
   async resendConfirmationEmail(req, res) {
     try {
       const { id } = req.params;
