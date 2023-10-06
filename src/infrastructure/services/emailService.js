@@ -1,33 +1,60 @@
 const nodemailer = require("nodemailer");
 const config = require("../../../config");
+const axios = require("axios");
 
-let transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    type: "OAuth2",
-    user: config.user,
-    clientId: config.clientId,
-    clientSecret: config.clientSecret,
-    refreshToken: config.refreshToken,
-    acessToken: config.acessToken,
-  },
-});
+const data = {
+  client_id: config.clientId,
+  client_secret: config.clientSecret,
+  refresh_token: config.refreshToken,
+  grant_type: "refresh_token",
+};
+
+const createTransporter = async () => {
+  try {
+    const response = await axios.post(
+      "https://oauth2.googleapis.com/token",
+      data
+    );
+    const accessToken = response.data.access_token;
+
+    let transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        type: "OAuth2",
+        user: config.user,
+        clientId: config.clientId,
+        clientSecret: config.clientSecret,
+        accessToken: accessToken,
+      },
+    });
+
+    return transporter; // Retornar o transporter criado
+  } catch (error) {
+    console.error("Erro ao obter novo token de acesso:", error);
+    throw error;
+  }
+};
+
+async function sendEmail(mailOptions) {
+  try {
+    const transporter = await createTransporter();
+    const info = await transporter.sendMail(mailOptions);
+    console.log("E-mail enviado:", info.response);
+  } catch (error) {
+    console.error("Erro ao enviar e-mail:", error);
+  }
+}
 
 module.exports = {
   async sendConfirmationCodeEmail(confirmationCode, recipientEmail) {
     let mailOptions = {
-      from: `System <${config.user}>`, // Use o endereço de e-mail configurado nas variáveis de ambiente
-      to: recipientEmail, // Use o e-mail do destinatário que você passou como argumento para a função
+      from: `System <${config.user}>`,
+      to: recipientEmail,
       subject: "Confirmação de E-mail",
       text: `Seu código de confirmação é: ${confirmationCode}`,
     };
 
-    try {
-      const info = await transporter.sendMail(mailOptions);
-      console.log("E-mail enviado:", info.response);
-    } catch (error) {
-      console.error("Erro ao enviar e-mail:", error);
-    }
+    await sendEmail(mailOptions);
   },
   async sendPasswordResetEmail(userEmail, resetToken) {
     let mailOptions = {
@@ -39,11 +66,6 @@ module.exports = {
         `${config.frontendBaseUrl}/reset-password/${resetToken}`,
     };
 
-    try {
-      const info = await transporter.sendMail(mailOptions);
-      console.log("E-mail de redefinição de senha enviado:", info.response);
-    } catch (error) {
-      console.error("Erro ao enviar e-mail de redefinição de senha:", error);
-    }
+    await sendEmail(mailOptions);
   },
 };
