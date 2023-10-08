@@ -6,7 +6,7 @@ class Client {
     email,
     date,
     gender,
-    adress,
+    street,
     district,
     cep,
     city,
@@ -18,7 +18,7 @@ class Client {
     this.email = email;
     this.date = date;
     this.gender = gender;
-    this.adress = adress;
+    this.street = street;
     this.district = district;
     this.cep = cep;
     this.city = city;

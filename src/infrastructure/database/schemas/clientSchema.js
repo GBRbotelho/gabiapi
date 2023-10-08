@@ -37,7 +37,7 @@ const clientSchema = new mongoose.Schema({
     enum: ["Masculino", "Feminino", "Outro"],
     required: false,
   },
-  adress: {
+  street: {
     type: String,
     required: false,
   },
