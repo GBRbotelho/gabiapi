@@ -7,12 +7,17 @@ module.exports = async (clientData, clientRepository) => {
       clientData.cpf,
       clientData.phone,
       clientData.email,
-      clientData.date
+      clientData.date,
+      clientData.gender,
+      clientData.adress,
+      clientData.district,
+      clientData.cep,
+      clientData.city,
+      clientData.state
     );
 
-    //Verifica se ja existe esse email no Banco de Dados
-    const emailValidate = await clientRepository.findByCpf(client.cpf);
-    if (emailValidate) {
+    const cpfValidate = await clientRepository.findByCpf(client.cpf);
+    if (cpfValidate) {
       throw { message: "CPF already exists" };
     }
 

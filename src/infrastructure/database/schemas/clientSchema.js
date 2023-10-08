@@ -32,6 +32,35 @@ const clientSchema = new mongoose.Schema({
     type: [historySchema],
     default: [],
   },
+  gender: {
+    type: String,
+    enum: ["Masculino", "Feminino", "Outro"],
+    required: false,
+  },
+  adress: {
+    type: String,
+    required: false,
+  },
+  district: {
+    type: String,
+    required: false,
+  },
+  number: {
+    type: String,
+    required: false,
+  },
+  cep: {
+    type: String,
+    required: false,
+  },
+  city: {
+    type: String,
+    required: false,
+  },
+  state: {
+    type: String,
+    required: false,
+  },
 });
 
 const Client = mongoose.model("Client", clientSchema);
