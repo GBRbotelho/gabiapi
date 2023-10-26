@@ -1,6 +1,12 @@
 const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
 const registrationFormSchema = new mongoose.Schema({
+  clientId: {
+    type: Schema.Types.ObjectId,
+    ref: "Client",
+    required: true,
+  },
   status: {
     type: String,
   },
@@ -54,6 +60,9 @@ const registrationFormSchema = new mongoose.Schema({
   },
 });
 
-const Service = mongoose.model("Service", registrationFormSchema);
+const registrationForm = mongoose.model(
+  "RegistrationForm",
+  registrationFormSchema
+);
 
-module.exports = Service;
+module.exports = registrationForm;

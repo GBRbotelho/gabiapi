@@ -23,4 +23,7 @@ module.exports = {
   async delete(registrationFormId) {
     return await RegistrationForm.findByIdAndDelete(registrationFormId);
   },
+  async findByClientId(clientId) {
+    return await RegistrationForm.findOne({ clientId });
+  },
 };

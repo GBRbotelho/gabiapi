@@ -1,5 +1,6 @@
 class RegistrationForm {
   constructor(
+    clientId,
     status,
     occupation,
     physicalActivity,
@@ -18,6 +19,7 @@ class RegistrationForm {
     episodes,
     treatments
   ) {
+    this.clientId = clientId;
     this.status = status;
     this.occupation = occupation;
     this.physicalActivity = physicalActivity;
