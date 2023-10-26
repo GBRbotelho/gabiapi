@@ -2,7 +2,6 @@ const RegistrationForm = require("../../../domain/RegistrationForm");
 
 module.exports = async (registrationFormData, registrationFormRepository) => {
   try {
-    console.log(registrationFormData);
     const registrationForm = new RegistrationForm(
       registrationFormData.clientId,
       registrationFormData.status,

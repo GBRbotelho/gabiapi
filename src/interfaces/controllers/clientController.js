@@ -5,10 +5,9 @@ const GetClientById = require("../../application/useCases/client/GetClientById")
 const UpdateClient = require("../../application/useCases/client/UpdateClient");
 const AddHistory = require("../../application/useCases/client/AddHistory");
 const clientRepository = require("../../infrastructure/repositories/clientRepository");
-const registrationFormRepository = require("../../infrastructure/repositories/registrationFormRepository");
 
-//RegistrationForm
-const CreateRegistrationForm = require("../../application/useCases/registrationForm/CreateRegistrationForm");
+//Controllers
+const registrationFormController = require("./registrationFormController");
 
 const clientController = {
   async create(req, res) {
@@ -16,10 +15,8 @@ const clientController = {
       const CreatedClient = await CreateClient(req.body, clientRepository);
       const data = {};
       data.clientId = CreatedClient._id;
-      console.log(data);
-      const CreatedRegistrationForm = await CreateRegistrationForm(
-        data,
-        registrationFormRepository
+      const CreatedRegistrationForm = await registrationFormController.create(
+        data
       );
 
       return res.status(201).json(CreatedClient);
