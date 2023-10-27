@@ -8,10 +8,10 @@ router.get(
   authenticationMiddleware,
   registrationFormController.getByClientId
 );
-// router.put(
-//   "/:id",
-//   authenticationMiddleware,
-//   registrationFormController.updateService
-// );
+router.put(
+  "/:id",
+  authenticationMiddleware,
+  registrationFormController.updateRegistrationForm
+);
 
 module.exports = router;

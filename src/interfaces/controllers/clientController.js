@@ -8,6 +8,7 @@ const clientRepository = require("../../infrastructure/repositories/clientReposi
 
 //Controllers
 const registrationFormController = require("./registrationFormController");
+const DeleteRegistrationForm = require("../../application/useCases/registrationForm/DeleteRegistrationForm");
 
 const clientController = {
   async create(req, res) {
@@ -60,6 +61,7 @@ const clientController = {
     try {
       const { id } = req.params;
       const DeletedClient = await DeleteClient(id, clientRepository);
+      const DeletedRegistrationForm = await DeleteRegistrationForm(id);
 
       return res.status(201).json(DeletedClient);
     } catch (error) {
