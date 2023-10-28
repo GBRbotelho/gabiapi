@@ -19,10 +19,6 @@ const consultationSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  session: {
-    type: Number,
-    required: true,
-  },
 });
 
 const Consultation = mongoose.model("Consultation", consultationSchema);

@@ -4,7 +4,6 @@ class Consultation {
     this.service = service;
     this.date = date;
     this.time = time;
-    this.session = session;
   }
 }
 
