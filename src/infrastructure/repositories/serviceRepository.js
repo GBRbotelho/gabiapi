@@ -4,8 +4,8 @@ module.exports = {
   async create(serviceData) {
     return await Service.create(serviceData);
   },
-  async findByName(name) {
-    return await Service.findOne({ name });
+  async getByClientId(clientId) {
+    return await Service.find({ clientId });
   },
   async update(serviceId, serviceData) {
     return await Service.findByIdAndUpdate(serviceId, serviceData, {

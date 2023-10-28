@@ -5,6 +5,7 @@ const UpdateService = require("../../application/useCases/service/UpdateService"
 const DeleteService = require("../../application/useCases/service/DeleteService");
 
 const serviceRepository = require("../../infrastructure/repositories/serviceRepository");
+const GetByClientId = require("../../application/useCases/service/GetByClientId");
 
 const serviceController = {
   async create(req, res) {
@@ -31,6 +32,17 @@ const serviceController = {
     try {
       const { id } = req.params;
       const service = await GetServiceById(id, serviceRepository);
+
+      return res.status(201).json(service);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  },
+
+  async getByClientId(req, res) {
+    try {
+      const { id } = req.params;
+      const service = await GetByClientId(id, serviceRepository);
 
       return res.status(201).json(service);
     } catch (error) {
