@@ -3,16 +3,13 @@ const Service = require("../../../domain/Service");
 module.exports = async (serviceData, serviceRepository) => {
   try {
     const service = new Service(
+      serviceData.clientId,
       serviceData.name,
       serviceData.description,
-      serviceData.price
+      serviceData.price,
+      serviceData.totalSessions,
+      serviceData.sessionsCompleted
     );
-
-    //Verifica se ja existe esse email no Banco de Dados
-    const nameValidate = await serviceRepository.findByName(service.name);
-    if (nameValidate) {
-      throw { message: "Name already exists" };
-    }
 
     return serviceRepository.create(service);
   } catch (error) {

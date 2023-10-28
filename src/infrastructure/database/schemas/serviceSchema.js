@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 
 const serviceSchema = new mongoose.Schema({
+  clientId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Client",
+    required: true,
+  },
   name: {
     type: String,
     required: true,
@@ -8,11 +13,18 @@ const serviceSchema = new mongoose.Schema({
   description: {
     type: String,
     required: true,
-    unique: true,
   },
   price: {
     type: Number,
     required: true,
+  },
+  totalSessions: {
+    type: Number,
+    required: true,
+  },
+  sessionsCompleted: {
+    type: Number,
+    default: 0,
   },
 });
 
