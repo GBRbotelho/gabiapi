@@ -11,6 +11,6 @@ router.use("/users", usersRoutes);
 router.use("/clients", clientsRoutes);
 router.use("/services", servicesRoutes);
 router.use("/registrationform", registrationFormRoutes);
-router.use("/consultation", consultationRoutes);
+router.use("/consultations", consultationRoutes);
 
 module.exports = router;

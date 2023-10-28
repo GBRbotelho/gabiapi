@@ -1,5 +1,5 @@
 const CreateConsultation = require("../../application/useCases/consultation/CreateConsultation");
-
+const GetByClientId = require("../../application/useCases/consultation/GetByClientId");
 const consultationRepository = require("../../infrastructure/repositories/consultationRepository");
 
 const consultationController = {

@@ -4,8 +4,8 @@ module.exports = {
   async create(consultationData) {
     return await Consultation.create(consultationData);
   },
-  async getByClientId(clientId) {
-    return await Consultation.find({ clientId });
+  async getByClientId(client) {
+    return await Consultation.find({ client });
   },
   async update(consultationId, consultationData) {
     return await Consultation.findByIdAndUpdate(
