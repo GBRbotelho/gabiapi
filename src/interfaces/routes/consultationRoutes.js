@@ -19,15 +19,15 @@ router.get(
 //   authenticationMiddleware,
 //   consultationController.getServiceById
 // );
-// router.put(
-//   "/:id",
-//   authenticationMiddleware,
-//   consultationController.updateService
-// );
-// router.delete(
-//   "/:id",
-//   authenticationMiddleware,
-//   consultationController.deleteService
-// );
+router.put(
+  "/:id",
+  authenticationMiddleware,
+  consultationController.updateConsultation
+);
+router.delete(
+  "/:id",
+  authenticationMiddleware,
+  consultationController.deleteConsultation
+);
 
 module.exports = router;
