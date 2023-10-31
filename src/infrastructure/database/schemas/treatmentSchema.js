@@ -7,7 +7,8 @@ const serviceSchema = new mongoose.Schema({
     required: true,
   },
   name: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Service",
     required: true,
   },
   description: {
