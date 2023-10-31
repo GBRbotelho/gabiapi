@@ -1,16 +1,16 @@
-const CreateService = require("../../application/useCases/service/CreateService");
-const GetServiceById = require("../../application/useCases/service/GetServiceById");
-const GetAllServices = require("../../application/useCases/service/GetAllServices");
-const UpdateService = require("../../application/useCases/service/UpdateService");
-const DeleteService = require("../../application/useCases/service/DeleteService");
+const CreateService = require("../../application/useCases/treatment/CreateService");
+const GetServiceById = require("../../application/useCases/treatment/GetServiceById");
+const GetAllServices = require("../../application/useCases/treatment/GetAllServices");
+const UpdateService = require("../../application/useCases/treatment/UpdateService");
+const DeleteService = require("../../application/useCases/treatment/DeleteService");
 
-const serviceRepository = require("../../infrastructure/repositories/serviceRepository");
-const GetByClientId = require("../../application/useCases/service/GetByClientId");
+const treatmentRepository = require("../../infrastructure/repositories/treatmentRepository");
+const GetByClientId = require("../../application/useCases/treatment/GetByClientId");
 
-const serviceController = {
+const treatmentController = {
   async create(req, res) {
     try {
-      const CreatedService = await CreateService(req.body, serviceRepository);
+      const CreatedService = await CreateService(req.body, treatmentRepository);
 
       return res.status(201).json(CreatedService);
     } catch (error) {
@@ -20,7 +20,7 @@ const serviceController = {
 
   async getAllServices(req, res) {
     try {
-      const services = await GetAllServices(serviceRepository);
+      const services = await GetAllServices(treatmentRepository);
 
       return res.status(200).json(services);
     } catch (error) {
@@ -31,7 +31,7 @@ const serviceController = {
   async getServiceById(req, res) {
     try {
       const { id } = req.params;
-      const service = await GetServiceById(id, serviceRepository);
+      const service = await GetServiceById(id, treatmentRepository);
 
       return res.status(201).json(service);
     } catch (error) {
@@ -42,7 +42,7 @@ const serviceController = {
   async getByClientId(req, res) {
     try {
       const { id } = req.params;
-      const service = await GetByClientId(id, serviceRepository);
+      const service = await GetByClientId(id, treatmentRepository);
 
       return res.status(201).json(service);
     } catch (error) {
@@ -56,7 +56,7 @@ const serviceController = {
       const UpdatedService = await UpdateService(
         id,
         req.body,
-        serviceRepository
+        treatmentRepository
       );
       return res.status(200).json(UpdatedService);
     } catch (error) {
@@ -67,7 +67,7 @@ const serviceController = {
   async deleteService(req, res) {
     try {
       const { id } = req.params;
-      const DeletedService = await DeleteService(id, serviceRepository);
+      const DeletedService = await DeleteService(id, treatmentRepository);
 
       return res.status(201).json(DeletedService);
     } catch (error) {
@@ -76,4 +76,4 @@ const serviceController = {
   },
 };
 
-module.exports = serviceController;
+module.exports = treatmentController;

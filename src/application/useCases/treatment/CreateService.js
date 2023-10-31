@@ -1,8 +1,8 @@
-const Service = require("../../../domain/Service");
+const Treatment = require("../../../domain/Treatment");
 
 module.exports = async (serviceData, serviceRepository) => {
   try {
-    const service = new Service(
+    const service = new Treatment(
       serviceData.clientId,
       serviceData.name,
       serviceData.description,
@@ -13,6 +13,6 @@ module.exports = async (serviceData, serviceRepository) => {
 
     return serviceRepository.create(service);
   } catch (error) {
-    throw { message: error.message || "Failed to Create service" };
+    throw { message: error.message || "Failed to Create treatment" };
   }
 };

@@ -1,4 +1,4 @@
-class Service {
+class Treatment {
   constructor(
     clientId,
     name,
@@ -16,4 +16,4 @@ class Service {
   }
 }
 
-module.exports = Service;
+module.exports = Treatment;
