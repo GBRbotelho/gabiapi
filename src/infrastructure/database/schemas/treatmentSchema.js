@@ -26,6 +26,11 @@ const serviceSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  status: {
+    type: String,
+    enum: ["Em andamento", "Concluido", "Cancelado"],
+    default: "Em andamento",
+  },
 });
 
 const Service = mongoose.model("Treatment", serviceSchema);
