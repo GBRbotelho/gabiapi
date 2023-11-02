@@ -24,6 +24,9 @@ const consultationSchema = new mongoose.Schema({
     enum: ["Agendado", "Concluido", "Faltou"],
     default: "Agendado",
   },
+  description: {
+    type: String,
+  },
 });
 
 const Consultation = mongoose.model("Consultation", consultationSchema);
