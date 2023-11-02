@@ -28,7 +28,7 @@ const serviceSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["Em andamento", "Concluido", "Cancelado"],
+    enum: ["Em andamento", "Concluído", "Cancelado"],
     default: "Em andamento",
   },
 });
