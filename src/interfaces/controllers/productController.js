@@ -1,6 +1,6 @@
 const CreateProduct = require("../../application/useCases/product/CreateProduct");
 const GetProductById = require("../../application/useCases/product/GetProductById");
-const GetAllProductss = require("../../application/useCases/product/GetAllProducts");
+const GetAllProducts = require("../../application/useCases/product/GetAllProducts");
 const UpdateProduct = require("../../application/useCases/product/UpdateProduct");
 const DeleteProduct = require("../../application/useCases/product/DeleteProduct");
 

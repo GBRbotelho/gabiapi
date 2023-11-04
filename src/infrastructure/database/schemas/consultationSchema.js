@@ -27,6 +27,12 @@ const consultationSchema = new mongoose.Schema({
   description: {
     type: String,
   },
+  products: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Product",
+    },
+  ],
 });
 
 const Consultation = mongoose.model("Consultation", consultationSchema);
