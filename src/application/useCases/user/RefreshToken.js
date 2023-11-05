@@ -7,7 +7,6 @@ module.exports = async (token) => {
       return null;
     }
 
-    console.log(decodedToken);
     const newToken = jwtService.createToken({
       userId: decodedToken.userId,
       email: decodedToken.email,

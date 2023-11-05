@@ -9,6 +9,7 @@ const ConfirmationCode = require("../../application/useCases/user/ConfirmationCo
 const SendPasswordResetEmail = require("../../application/useCases/user/SendPasswordResetEmail");
 const ResetPassword = require("../../application/useCases/user/ResetPassword");
 const RefreshToken = require("../../application/useCases/user/RefreshToken");
+const GetUserData = require("../../application/useCases/user/GetUserData");
 const userRepository = require("../../infrastructure/repositories/userRepository");
 
 const userController = {
@@ -143,6 +144,21 @@ const userController = {
       const result = await ResetPassword(token, newPassword, userRepository);
 
       return res.status(200).json(result);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  },
+  async getUserData(req, res) {
+    try {
+      const token = req.headers.authorization;
+
+      const userData = await GetUserData(token, userRepository);
+
+      if (userData) {
+        return res.status(200).json(userData);
+      } else {
+        return res.status(402).json({ message: "Unauthorized" });
+      }
     } catch (error) {
       return res.status(500).json({ error: error.message });
     }

@@ -7,6 +7,7 @@ router.post("/login", UserController.login);
 router.post("/refresh-token", UserController.refreshToken);
 router.post("/", UserController.create);
 router.get("/", authenticationMiddleware, UserController.getAllUsers);
+router.get("/data", authenticationMiddleware, UserController.getUserData);
 router.get("/:id", authenticationMiddleware, UserController.getUserById);
 router.put("/:id", authenticationMiddleware, UserController.updateUser);
 router.delete("/:id", authenticationMiddleware, UserController.deleteUser);
