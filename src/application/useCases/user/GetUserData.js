@@ -11,7 +11,7 @@ async function getUserData(token, userRepository) {
       return null;
     }
     const user = await userRepository.getById(decoded.userId);
-
+    user.emailConfirmationCode = null;
     return user;
   } catch (error) {
     return null;
