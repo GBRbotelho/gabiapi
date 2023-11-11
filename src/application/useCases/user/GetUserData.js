@@ -8,7 +8,7 @@ async function getUserData(token, userRepository) {
 
     const decoded = await jwtService.verifyToken(token);
     if (!decoded) {
-      return null;
+      return { error: "NO" };
     }
     const user = await userRepository.getById(decoded.userId);
     user.emailConfirmationCode = null;

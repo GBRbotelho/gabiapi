@@ -6,7 +6,7 @@ module.exports = async (userId, code, repository) => {
   }
 
   if (user.emailConfirmationCode === code) {
-    user.isEmailVerified = true;
+    user.isEmailVerified = "SIM";
     await repository.update(userId, user);
 
     return { success: true };
