@@ -13,6 +13,7 @@ const serviceSchema = new mongoose.Schema({
   },
   description: {
     type: String,
+    default: "",
   },
   price: {
     type: Number,
