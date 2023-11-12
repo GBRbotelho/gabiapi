@@ -1,5 +1,6 @@
 const CreateConsultation = require("../../application/useCases/consultation/CreateConsultation");
 const DeleteConsultation = require("../../application/useCases/consultation/DeleteConsultation");
+const GetAllConsultations = require("../../application/useCases/consultation/GetAllConsultations");
 const GetByClientId = require("../../application/useCases/consultation/GetByClientId");
 const UpdateConsultation = require("../../application/useCases/consultation/UpdateConsultation");
 const consultationRepository = require("../../infrastructure/repositories/consultationRepository");
@@ -23,6 +24,15 @@ const consultationController = {
       const consultation = await GetByClientId(id, consultationRepository);
 
       return res.status(201).json(consultation);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  },
+  async getAllConsultations(req, res) {
+    try {
+      const services = await GetAllConsultations(consultationRepository);
+
+      return res.status(200).json(services);
     } catch (error) {
       return res.status(500).json({ error: error.message });
     }

@@ -4,11 +4,11 @@ const consultationController = require("../controllers/consultationController");
 const authenticationMiddleware = require("../../infrastructure/middlewares/authMiddleware");
 
 router.post("/", authenticationMiddleware, consultationController.create);
-// router.get(
-//   "/",
-//   authenticationMiddleware,
-//   consultationController.getAllServices
-// );
+router.get(
+  "/",
+  authenticationMiddleware,
+  consultationController.getAllConsultations
+);
 router.get(
   "/client/:id",
   authenticationMiddleware,
