@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
   accountLevel: {
     type: Number,
     required: true,
-    default: 0,
+    default: 3,
   },
   emailConfirmationCode: {
     type: String,
