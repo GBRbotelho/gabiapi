@@ -5,7 +5,7 @@ const axios = require("axios");
 const data = {
   client_id: config.clientId,
   client_secret: config.clientSecret,
-  refresh_token: config.refreshToken,
+  refresh_token: config.refresh_token,
   grant_type: "refresh_token",
 };
 
