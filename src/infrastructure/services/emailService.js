@@ -1,5 +1,4 @@
 const nodemailer = require("nodemailer");
-const config = require("../../../config");
 const axios = require("axios");
 require("dotenv").config();
 
