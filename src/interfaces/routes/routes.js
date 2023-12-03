@@ -9,6 +9,10 @@ const productsRoutes = require("./productsRoutes");
 
 const router = express.Router();
 
+router.get("/", (req, res) => {
+  res.send("Bem-vindo à API!");
+});
+
 router.use("/users", usersRoutes);
 router.use("/clients", clientsRoutes);
 router.use("/treatments", treatmentsRoutes);
