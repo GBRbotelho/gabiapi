@@ -1,5 +1,19 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
+const PORT = process.env.PORT || 3000;
+const helmet = require("helmet");
+const morgan = require("morgan");
+const errorHandler = require("errorhandler");
+
+//ErrorHandler
+app.use(errorHandler());
+
+//Morgan
+app.use(morgan("combined")); // Pode ajustar o formato conforme necessário
+
+//Helmet
+app.use(helmet());
 
 //Cors
 const cors = require("cors");
@@ -22,6 +36,6 @@ connectToMongoDB();
 //Server
 app.use(express.json());
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log("Servidor rodando na porta 3000");
 });

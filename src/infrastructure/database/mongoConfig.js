@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 // URL de conexão com o MongoDB
-const mongoURI = "mongodb://localhost:27017/databaseapi";
+const mongoURI =
+  process.env.MONGO_URI || "mongodb://localhost:27017/databaseapi";
 
 // Função para conectar ao MongoDB
 const connectToMongoDB = async () => {

@@ -1,17 +1,17 @@
 const jwt = require("jsonwebtoken");
-const {
-  secret,
-  expiresIn,
-  algorithm,
-} = require("../../../infrastructure/configs/jwtConfig");
 
 function createToken(data) {
-  return jwt.sign(data, secret, { expiresIn, algorithm });
+  const expiresIn = process.env.JWT_EXPIRES_IN;
+  const algorithm = process.env.JWT_ALGORITHM;
+  return jwt.sign(data, process.env.JWT_SECRET, { expiresIn, algorithm });
 }
 
 function verifyToken(token) {
   try {
-    return jwt.verify(token, secret, { algorithms: [algorithm] });
+    const algorithm = process.env.JWT_ALGORITHM;
+    return jwt.verify(token, process.env.JWT_SECRET, {
+      algorithms: [algorithm],
+    });
   } catch (error) {
     return null;
   }

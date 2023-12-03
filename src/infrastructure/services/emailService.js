@@ -1,11 +1,12 @@
 const nodemailer = require("nodemailer");
 const config = require("../../../config");
 const axios = require("axios");
+require("dotenv").config();
 
 const data = {
-  client_id: config.clientId,
-  client_secret: config.clientSecret,
-  refresh_token: config.refresh_token,
+  client_id: process.env.CLIENT_ID,
+  client_secret: process.env.CLIENT_SECRET,
+  refresh_token: process.env.REFRESH_TOKEN,
   grant_type: "refresh_token",
 };
 
@@ -21,9 +22,9 @@ const createTransporter = async () => {
       service: "gmail",
       auth: {
         type: "OAuth2",
-        user: config.user,
-        clientId: config.clientId,
-        clientSecret: config.clientSecret,
+        user: process.env.USER,
+        clientId: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
         accessToken: accessToken,
       },
     });
@@ -48,7 +49,7 @@ async function sendEmail(mailOptions) {
 module.exports = {
   async sendConfirmationCodeEmail(confirmationCode, recipientEmail) {
     let mailOptions = {
-      from: `System <${config.user}>`,
+      from: `System <${process.env.USER}>`,
       to: recipientEmail,
       subject: "Confirmação de E-mail",
       text: `Seu código de confirmação é: ${confirmationCode}`,
@@ -58,12 +59,14 @@ module.exports = {
   },
   async sendPasswordResetEmail(userEmail, resetToken) {
     let mailOptions = {
-      from: `System <${config.user}>`,
+      from: `System <${process.env.USER}>`,
       to: userEmail,
       subject: "Redefinição de Senha",
       text:
         `Você solicitou a redefinição de senha. Clique no link abaixo para redefinir sua senha:\n\n` +
-        `${config.frontendBaseUrl}/reset-password/${resetToken}`,
+        `${
+          process.env.PORT || process.env.PASSWORD_RESET_LINK
+        }/reset-password/${resetToken}`,
     };
 
     await sendEmail(mailOptions);
