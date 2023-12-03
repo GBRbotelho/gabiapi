@@ -3,19 +3,14 @@
   "builds": [
     {
       "src": "index.js",
-      "use": "@vercel/node",
-      "config": { "serverFiles": ["package.json"] }
+      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "index.js",
-      "dest": "/",
-      "continue": true,
-      "headers": {
-        "Cache-Control": "public, max- idade=0, deve-revalidar",
-        "Service-Worker-Allowed": "/"
-      }
+      "src": "/(.*)",
+
+      "dest": "index.js"
     }
   ]
 }
