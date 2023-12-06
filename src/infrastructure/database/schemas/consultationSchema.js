@@ -7,8 +7,8 @@ const consultationSchema = new mongoose.Schema({
     required: true,
   },
   service: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Service",
+    type: mongoose.Schema.Types.Mixed,
+    ref: "Treatment",
     required: true,
   },
   date: {
