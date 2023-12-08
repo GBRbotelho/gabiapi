@@ -34,7 +34,7 @@ const clientSchema = new mongoose.Schema({
   },
   gender: {
     type: String,
-    enum: ["Masculino", "Feminino", "Outro"],
+    enum: ["Masculino", "Feminino", "Prefiro não informar"],
     required: false,
   },
   street: {
