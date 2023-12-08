@@ -31,7 +31,7 @@ router.delete(
 );
 
 router.delete(
-  "/clientid/:id",
+  "/client/:id",
   authenticationMiddleware,
   consultationController.deleteAllConsultations
 );
