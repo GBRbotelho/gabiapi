@@ -10,7 +10,7 @@ const productSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["Disponível", "Esgotado"],
+    enum: ["Disponível", "Indisponivel"],
     default: "Disponível",
   },
   lote: {
