@@ -16,10 +16,10 @@ module.exports = async (clientData, clientRepository) => {
       clientData.state
     );
 
-    const cpfValidate = await clientRepository.findByCpf(client.cpf);
-    if (cpfValidate) {
-      throw { message: "CPF already exists" };
-    }
+    // const cpfValidate = await clientRepository.findByCpf(client.cpf);
+    // if (cpfValidate) {
+    //   throw { message: "CPF already exists" };
+    // }
 
     return clientRepository.create(client);
   } catch (error) {
