@@ -13,7 +13,6 @@ const clientSchema = new mongoose.Schema({
   },
   cpf: {
     type: String,
-    unique: true,
   },
   phone: {
     type: String,
