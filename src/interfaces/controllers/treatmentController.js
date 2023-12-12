@@ -6,6 +6,7 @@ const DeleteService = require("../../application/useCases/treatment/DeleteServic
 
 const treatmentRepository = require("../../infrastructure/repositories/treatmentRepository");
 const GetByClientId = require("../../application/useCases/treatment/GetByClientId");
+const DeleteAllTreatmentsClientId = require("../../application/useCases/treatment/DeleteAllTreatmentsClientId");
 
 const treatmentController = {
   async create(req, res) {
@@ -70,6 +71,20 @@ const treatmentController = {
       const DeletedService = await DeleteService(id, treatmentRepository);
 
       return res.status(201).json(DeletedService);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  },
+
+  async deleteAllTreatments(req, res) {
+    try {
+      const { id } = req.params;
+      const DeletedTreatments = await DeleteAllTreatmentsClientId(
+        id,
+        treatmentRepository
+      );
+
+      return res.status(201).json(DeletedTreatments);
     } catch (error) {
       return res.status(500).json({ error: error.message });
     }

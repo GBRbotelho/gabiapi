@@ -30,4 +30,10 @@ router.delete(
   consultationController.deleteConsultation
 );
 
+router.delete(
+  "/client/:id",
+  authenticationMiddleware,
+  consultationController.deleteAllConsultations
+);
+
 module.exports = router;

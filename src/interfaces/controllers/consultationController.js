@@ -1,4 +1,5 @@
 const CreateConsultation = require("../../application/useCases/consultation/CreateConsultation");
+const DeleteAllConsultationClientId = require("../../application/useCases/consultation/DeleteAllConsultationClientId");
 const DeleteConsultation = require("../../application/useCases/consultation/DeleteConsultation");
 const GetAllConsultations = require("../../application/useCases/consultation/GetAllConsultations");
 const GetByClientId = require("../../application/useCases/consultation/GetByClientId");
@@ -59,6 +60,19 @@ const consultationController = {
       );
 
       return res.status(201).json(DeletedConsultation);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  },
+  async deleteAllConsultations(req, res) {
+    try {
+      const { id } = req.params;
+      const DeletedConsultations = await DeleteAllConsultationClientId(
+        id,
+        consultationRepository
+      );
+
+      return res.status(201).json(DeletedConsultations);
     } catch (error) {
       return res.status(500).json({ error: error.message });
     }

@@ -25,4 +25,7 @@ module.exports = {
   async delete(consultationId) {
     return await Consultation.findByIdAndDelete(consultationId);
   },
+  async deleteByClientId(clientId) {
+    return await Consultation.deleteMany({ client: clientId });
+  },
 };

@@ -17,5 +17,10 @@ router.delete(
   authenticationMiddleware,
   serviceController.deleteService
 );
+router.delete(
+  "/client/:id",
+  authenticationMiddleware,
+  serviceController.deleteAllTreatments
+);
 
 module.exports = router;
