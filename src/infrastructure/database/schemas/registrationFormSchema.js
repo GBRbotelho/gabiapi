@@ -58,6 +58,57 @@ const registrationFormSchema = new mongoose.Schema({
   treatments: {
     type: String,
   },
+  lastDate: {
+    type: Date,
+  },
+  respiratoryPain: {
+    type: String,
+  },
+  vertigoSymptoms: {
+    type: String,
+  },
+  strengthLoss: {
+    type: String,
+  },
+  urinarySystem: {
+    type: String,
+  },
+  landmark: {
+    type: String,
+  },
+  procedures: {
+    type: String,
+  },
+  sleepQuality: {
+    type: String,
+  },
+  anxietyStress: {
+    type: String,
+  },
+  activityPause: {
+    type: String,
+  },
+  posture: {
+    type: String,
+  },
+  assessmentConclusion: {
+    type: String,
+  },
+  painLocation: {
+    type: String,
+  },
+  otherLocation: {
+    type: String,
+  },
+  sessionsNumber: {
+    type: String,
+  },
+  method: {
+    type: String,
+  },
+  price: {
+    type: String,
+  },
 });
 
 const registrationForm = mongoose.model(

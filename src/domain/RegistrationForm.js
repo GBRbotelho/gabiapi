@@ -17,7 +17,24 @@ class RegistrationForm {
     worsening,
     improvement,
     episodes,
-    treatments
+    treatments,
+    lastDate,
+    respiratoryPain,
+    vertigoSymptoms,
+    strengthLoss,
+    urinarySystem,
+    landmark,
+    procedures,
+    sleepQuality,
+    anxietyStress,
+    activityPause,
+    posture,
+    assessmentConclusion,
+    painLocation,
+    otherLocation,
+    sessionsNumber,
+    method,
+    price
   ) {
     this.clientId = clientId;
     this.status = status;
@@ -37,6 +54,22 @@ class RegistrationForm {
     this.improvement = improvement;
     this.episodes = episodes;
     this.treatments = treatments;
+    this.lastDate = lastDate;
+    this.respiratoryPain = respiratoryPain;
+    this.vertigoSymptoms = vertigoSymptoms;
+    this.strengthLoss = strengthLoss;
+    this.urinarySystem = urinarySystem;
+    this.landmark = landmark;
+    this.procedures = procedures;
+    this.sleepQuality = sleepQuality;
+    this.anxietyStress = anxietyStress;
+    this.activityPause = activityPause;
+    this.posture = posture;
+    this.assessmentConclusion = assessmentConclusion;
+    this.painLocation = painLocation;
+    this.otherLocation = otherLocation;
+    this.method = method;
+    this.price = price;
   }
 }
 

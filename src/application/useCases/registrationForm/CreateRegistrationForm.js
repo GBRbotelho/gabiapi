@@ -20,7 +20,23 @@ module.exports = async (registrationFormData, registrationFormRepository) => {
       registrationFormData.worsening,
       registrationFormData.improvement,
       registrationFormData.episodes,
-      registrationFormData.treatments
+      registrationFormData.treatments,
+      registrationFormData.lastDate,
+      registrationFormData.respiratoryPain,
+      registrationFormData.vertigoSymptoms,
+      registrationFormData.strengthLoss,
+      registrationFormData.urinarySystem,
+      registrationFormData.landmark,
+      registrationFormData.procedures,
+      registrationFormData.sleepQuality,
+      registrationFormData.anxietyStress,
+      registrationFormData.activityPause,
+      registrationFormData.posture,
+      registrationFormData.assessmentConclusion,
+      registrationFormData.painLocation,
+      registrationFormData.otherLocation,
+      registrationFormData.method,
+      registrationFormData.price
     );
 
     const registrationFormValidate =
