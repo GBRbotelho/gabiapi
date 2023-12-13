@@ -101,13 +101,13 @@ const registrationFormSchema = new mongoose.Schema({
     type: String,
   },
   sessionsNumber: {
-    type: String,
+    type: Number,
   },
   method: {
     type: String,
   },
   price: {
-    type: String,
+    type: Number,
   },
 });
 
