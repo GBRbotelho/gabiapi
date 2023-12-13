@@ -20,6 +20,7 @@ const clientSchema = new mongoose.Schema({
   },
   email: {
     type: String,
+    required: false,
   },
   date: {
     type: Date,
