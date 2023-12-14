@@ -6,7 +6,8 @@ module.exports = async (consultationData, consultationRepository) => {
       consultationData.client,
       consultationData.service,
       consultationData.date,
-      consultationData.time
+      consultationData.time,
+      consultationData.price
     );
 
     return consultationRepository.create(consultation);

@@ -33,6 +33,9 @@ const consultationSchema = new mongoose.Schema({
       ref: "Product",
     },
   ],
+  price: {
+    type: Number,
+  },
 });
 
 const Consultation = mongoose.model("Consultation", consultationSchema);
