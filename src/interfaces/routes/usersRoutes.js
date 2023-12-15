@@ -19,5 +19,6 @@ router.put(
 router.post("/confirm/:id", UserController.compareConfirmationCode);
 router.post("/request-password-reset", UserController.requestPasswordReset);
 router.post("/reset-password/:token", UserController.resetPassword);
+router.put("/update-password/:id", UserController.updatePassword);
 
 module.exports = router;

@@ -11,6 +11,7 @@ const ResetPassword = require("../../application/useCases/user/ResetPassword");
 const RefreshToken = require("../../application/useCases/user/RefreshToken");
 const GetUserData = require("../../application/useCases/user/GetUserData");
 const userRepository = require("../../infrastructure/repositories/userRepository");
+const UpdatePassword = require("../../application/useCases/user/UpdatePassword");
 
 const userController = {
   async create(req, res) {
@@ -159,6 +160,28 @@ const userController = {
       } else {
         return res.status(402).json({ message: "Unauthorized" });
       }
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  },
+  async updatePassword(req, res) {
+    try {
+      const { id } = req.params;
+      const { currentPassword, newPassword } = req.body; // Certifique-se de que as propriedades estão corretas
+
+      // Verifica se as senhas estão presentes no corpo da requisição
+      if (!currentPassword || !newPassword) {
+        return res
+          .status(400)
+          .json({ error: "Both currentPassword and newPassword are required" });
+      }
+
+      const UpdatedUser = await UpdatePassword(
+        id,
+        { currentPassword, newPassword },
+        userRepository
+      );
+      return res.status(200).json(UpdatedUser);
     } catch (error) {
       return res.status(500).json({ error: error.message });
     }
