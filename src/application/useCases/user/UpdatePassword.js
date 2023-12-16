@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 
 module.exports = async (userId, passwordData, userRepository) => {
+  console.log("Passou");
   try {
     // Verifica se o usuário existe
     const existingUser = await userRepository.getById(userId);
@@ -14,7 +15,7 @@ module.exports = async (userId, passwordData, userRepository) => {
       existingUser.password
     );
     if (!passwordMatch) {
-      throw { message: "Incorrect current password" };
+      throw { message: "Senha atual incorreta!" };
     }
 
     // Criptografa a nova senha
@@ -30,6 +31,6 @@ module.exports = async (userId, passwordData, userRepository) => {
 
     return updatedUser;
   } catch (error) {
-    throw { message: error.message || "Failed password update" };
+    throw { error: error.message || "Failed password update" };
   }
 };
