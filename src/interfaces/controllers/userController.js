@@ -167,13 +167,8 @@ const userController = {
   async updatePassword(req, res) {
     try {
       const { id } = req.params;
-      const { currentPassword, newPassword } = req.body; // Certifique-se de que as propriedades estão corretas
 
-      const UpdatedUser = await UpdatePassword(
-        id,
-        { currentPassword, newPassword },
-        userRepository
-      );
+      const UpdatedUser = await UpdatePassword(id, req.body, userRepository);
       return res.status(200).json(UpdatedUser);
     } catch (error) {
       return res.status(401).json({ error: error.error });
