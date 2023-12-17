@@ -9,7 +9,7 @@ module.exports = async (userId, passwordData, userRepository) => {
       throw { message: "User not found" };
     }
 
-    if (passwordData.admin === 2) {
+    if (passwordData.admin === "2") {
       const passwordMatch = await bcrypt.compare(
         passwordData.currentPassword,
         existingUser.password
