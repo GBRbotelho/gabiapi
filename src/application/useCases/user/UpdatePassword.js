@@ -19,20 +19,19 @@ module.exports = async (userId, passwordData, userRepository) => {
       if (!passwordMatch) {
         throw { message: "Senha atual incorreta!" };
       }
-    } else {
-      // Criptografa a nova senha
-      const hashedNewPassword = await bcrypt.hash(passwordData.newPassword, 10);
-
-      // Atualiza a senha do usuário
-      existingUser.password = hashedNewPassword;
-
-      // Executa a atualização no repositório
-      const updatedUser = await userRepository.update(userId, {
-        password: hashedNewPassword,
-      });
-
-      return updatedUser;
     }
+    // Criptografa a nova senha
+    const hashedNewPassword = await bcrypt.hash(passwordData.newPassword, 10);
+
+    // Atualiza a senha do usuário
+    existingUser.password = hashedNewPassword;
+
+    // Executa a atualização no repositório
+    const updatedUser = await userRepository.update(userId, {
+      password: hashedNewPassword,
+    });
+
+    return updatedUser;
   } catch (error) {
     throw { error: error.message || "Failed password update" };
   }
