@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 
 module.exports = async (userId, passwordData, userRepository) => {
   try {
+    console.log(passwordData);
     // Verifica se o usuário existe
     const existingUser = await userRepository.getById(userId);
     if (!existingUser) {
@@ -10,7 +11,7 @@ module.exports = async (userId, passwordData, userRepository) => {
 
     // Verifica se a senha atual fornecida corresponde à senha armazenada,
     // a menos que o usuário seja um admin (admin === 1)
-    if (passwordData.admin === 0) {
+    if (passwordData.admin !== 1) {
       const passwordMatch = await bcrypt.compare(
         passwordData.currentPassword,
         existingUser.password

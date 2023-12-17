@@ -169,13 +169,6 @@ const userController = {
       const { id } = req.params;
       const { currentPassword, newPassword } = req.body; // Certifique-se de que as propriedades estão corretas
 
-      // Verifica se as senhas estão presentes no corpo da requisição
-      if (!currentPassword || !newPassword) {
-        return res
-          .status(400)
-          .json({ error: "Both currentPassword and newPassword are required" });
-      }
-
       const UpdatedUser = await UpdatePassword(
         id,
         { currentPassword, newPassword },
