@@ -9,9 +9,7 @@ module.exports = async (userId, passwordData, userRepository) => {
       throw { message: "User not found" };
     }
 
-    // Verifica se a senha atual fornecida corresponde à senha armazenada,
-    // a menos que o usuário seja um admin (admin === 1)
-    if (passwordData.admin !== 1) {
+    if (passwordData.admin === 0) {
       const passwordMatch = await bcrypt.compare(
         passwordData.currentPassword,
         existingUser.password
