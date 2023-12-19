@@ -22,6 +22,7 @@ module.exports = async (clientData, clientRepository) => {
     // if (cpfValidate) {
     //   throw { message: "CPF already exists" };
     // }
+    //
 
     return clientRepository.create(client);
   } catch (error) {
