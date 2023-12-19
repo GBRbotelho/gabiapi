@@ -59,6 +59,14 @@ const clientSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  knowMyWork: {
+    type: String,
+    required: false,
+  },
+  recommendation: {
+    type: mongoose.Schema.Types.Mixed,
+    required: false,
+  },
 });
 
 const Client = mongoose.model("Client", clientSchema);

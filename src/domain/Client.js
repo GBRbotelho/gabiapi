@@ -10,7 +10,9 @@ class Client {
     district,
     cep,
     city,
-    state
+    state,
+    knowMyWork,
+    recommendation
   ) {
     this.name = name;
     this.cpf = cpf;
@@ -23,6 +25,8 @@ class Client {
     this.cep = cep;
     this.city = city;
     this.state = state;
+    this.knowMyWork = knowMyWork;
+    this.recommendation = recommendation;
   }
 }
 

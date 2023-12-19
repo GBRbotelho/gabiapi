@@ -13,7 +13,9 @@ module.exports = async (clientData, clientRepository) => {
       clientData.district,
       clientData.cep,
       clientData.city,
-      clientData.state
+      clientData.state,
+      clientData.knowMyWork,
+      clientData.recommendation
     );
 
     // const cpfValidate = await clientRepository.findByCpf(client.cpf);
