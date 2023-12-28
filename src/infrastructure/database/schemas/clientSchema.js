@@ -11,6 +11,9 @@ const clientSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  surname: {
+    type: String,
+  },
   cpf: {
     type: String,
   },
@@ -25,10 +28,6 @@ const clientSchema = new mongoose.Schema({
   date: {
     type: Date,
     required: true,
-  },
-  history: {
-    type: [historySchema],
-    default: [],
   },
   gender: {
     type: String,

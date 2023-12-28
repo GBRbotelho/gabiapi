@@ -1,6 +1,7 @@
 class Client {
   constructor(
     name,
+    surname,
     cpf,
     phone,
     email,
@@ -15,6 +16,7 @@ class Client {
     recommendation
   ) {
     this.name = name;
+    this.surname = surname;
     this.cpf = cpf;
     this.phone = phone;
     this.email = email;

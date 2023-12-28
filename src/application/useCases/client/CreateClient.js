@@ -4,6 +4,7 @@ module.exports = async (clientData, clientRepository) => {
   try {
     const client = new Client(
       clientData.name,
+      clientData.surname,
       clientData.cpf,
       clientData.phone,
       clientData.email,
