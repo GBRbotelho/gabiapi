@@ -34,7 +34,8 @@ class RegistrationForm {
     otherLocation,
     sessionsNumber,
     method,
-    price
+    price,
+    circulatory
   ) {
     this.clientId = clientId;
     this.status = status;
@@ -68,8 +69,10 @@ class RegistrationForm {
     this.assessmentConclusion = assessmentConclusion;
     this.painLocation = painLocation;
     this.otherLocation = otherLocation;
+    this.sessionsNumber = sessionsNumber;
     this.method = method;
     this.price = price;
+    this.circulatory = circulatory;
   }
 }
 

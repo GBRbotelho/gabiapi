@@ -109,6 +109,9 @@ const registrationFormSchema = new mongoose.Schema({
   price: {
     type: Number,
   },
+  circulatory: {
+    type: String,
+  },
 });
 
 const registrationForm = mongoose.model(

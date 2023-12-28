@@ -35,8 +35,10 @@ module.exports = async (registrationFormData, registrationFormRepository) => {
       registrationFormData.assessmentConclusion,
       registrationFormData.painLocation,
       registrationFormData.otherLocation,
+      registrationFormData.sessionsNumber,
       registrationFormData.method,
-      registrationFormData.price
+      registrationFormData.price,
+      registrationFormData.circulatory
     );
 
     const registrationFormValidate =
