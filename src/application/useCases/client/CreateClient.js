@@ -12,6 +12,7 @@ module.exports = async (clientData, clientRepository) => {
       clientData.gender,
       clientData.street,
       clientData.district,
+      clientData.number,
       clientData.cep,
       clientData.city,
       clientData.state,

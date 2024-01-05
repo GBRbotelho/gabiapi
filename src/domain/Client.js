@@ -9,6 +9,7 @@ class Client {
     gender,
     street,
     district,
+    number,
     cep,
     city,
     state,
@@ -24,6 +25,7 @@ class Client {
     this.gender = gender;
     this.street = street;
     this.district = district;
+    this.number = number;
     this.cep = cep;
     this.city = city;
     this.state = state;
